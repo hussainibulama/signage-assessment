@@ -92,7 +92,7 @@ const WelcomeScreen = ({navigation}) => {
             ...styles.signInButton,
             backgroundColor: isValid && values.pin ? '#0089AF' : '#b3eeff',
           }}
-          disabled={!isValid || !values.pin}
+          //   disabled={!isValid || !values.pin}
           onPress={handleSubmit}
         >
           {/*

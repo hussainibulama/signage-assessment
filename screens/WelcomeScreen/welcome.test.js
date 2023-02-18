@@ -8,7 +8,6 @@ import {
 import WelcomeScreen from '.';
 import {act} from 'react-dom/test-utils';
 
-//ensuiring 100% coverage with --coverage on jest package.json
 describe('Welcome screen test cases', () => {
   beforeEach(() => {
     navigation = {
@@ -37,6 +36,12 @@ describe('Welcome screen test cases', () => {
     fireEvent.changeText(pinInput, '123456');
     await act(() => Promise.resolve(fireEvent.press(Button)));
     const errorText = await screen.getByText('Invalid pin entered');
+    expect(errorText).toBeTruthy();
+  });
+  it('should not submit empty form', async () => {
+    const Button = screen.getByText('Continue');
+    await act(() => Promise.resolve(fireEvent.press(Button)));
+    const errorText = await screen.getByText('Valid pin is required');
     expect(errorText).toBeTruthy();
   });
   it('should accept valid pin and navigate', async () => {
